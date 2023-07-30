@@ -4,6 +4,7 @@ import { User } from './interfaces/Account.interfaces';
 import { LOADING_SERVICE_INJECTOR } from './services/http-request.interceptor';
 import { ILoadingService } from './interfaces/loading.interface';
 import { Subscription, debounceTime, delay, distinctUntilChanged } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,8 @@ export class AppComponent implements OnInit, OnDestroy{
 
   constructor(private accountService: AccountService,
     @Inject(LOADING_SERVICE_INJECTOR)
-    private loadingService: ILoadingService,) {
+    private loadingService: ILoadingService,
+    private router: Router) {
       this.listenToLoading();
   }
 
@@ -30,15 +32,17 @@ export class AppComponent implements OnInit, OnDestroy{
   }
 
   private setCurrentUser() {
-    const userString = localStorage.getItem('user');
-    if (!userString) return;
-    const user: User = JSON.parse(userString);
+    const tokenStr = localStorage.getItem('token');
+    if (!tokenStr) return;
+    const user: User = {
+      token: JSON.parse(tokenStr)
+    };
     this.accountService.setCurrentUser(user);
+    this.router.navigate(['/dashboard']);
   }
 
   listenToLoading(): void {
     this.subscriptions.push(this.loadingService.loadingSub
-
       .pipe(
         delay(0),
         debounceTime(100),

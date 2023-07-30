@@ -10,11 +10,8 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                    <!-- <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         Dropdown
                     </a>
@@ -26,15 +23,13 @@
                         </li>
                         <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                </li>
+                </li> -->
             </ul>
             <form class="d-flex" role="search">
-                <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
-                <button class="btn btn-outline-primary me-3" [routerLink]="'/auth/registration'" type="button">Registration</button>
-                <button class="btn btn-outline-primary" [routerLink]="'/auth/login'" type="button">Login</button>
+                <input *ngIf="isAuthenticated" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button *ngIf="isAuthenticated" class="btn btn-outline-primary me-3" (click)="onLogout()" type="button">Logout</button>
+                <button *ngIf="!isAuthenticated" class="btn btn-outline-primary me-3" [routerLink]="'/auth/registration'" type="button">Registration</button>
+                <button *ngIf="!isAuthenticated" class="btn btn-outline-primary" [routerLink]="'/auth/login'" type="button">Login</button>
             </form>
         </div>
     </div>
