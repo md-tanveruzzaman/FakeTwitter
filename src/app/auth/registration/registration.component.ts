@@ -25,7 +25,6 @@ export class RegistrationComponent {
   ) { }
 
   onSubmit(formGroup: FormGroup) {
-    this.router.navigate(['/login']);
     if (formGroup.status !== 'VALID') {
       this.toastr.error("Fields are Required!")
       return;

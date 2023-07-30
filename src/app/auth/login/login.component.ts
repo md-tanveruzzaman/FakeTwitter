@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Login, User } from 'src/app/interfaces/Account.interfaces';
 import { AccountService } from 'src/app/services/account.service';
 
 @Component({
@@ -27,6 +28,19 @@ export class LoginComponent {
       return;
     }
 
-    console.log(formGroup)
+    const user: Login = formGroup.value;
+    this.accountService.login(user)
+      .subscribe({
+        next: (res: User) => {
+          if (res.token) {
+            this.toastr.success('Successfull Logged In');
+            this.router.navigate(['/dashboard']);
+          }
+          else this.toastr.error("Unable to login");
+        },
+        error: error => {
+          this.toastr.error("Something went wrong!", "HTTP Error")
+        }
+      })
   }
 }

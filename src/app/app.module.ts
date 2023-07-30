@@ -6,9 +6,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { HomeComponent } from './home/home.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
+import { HttpRequestInterceptor, LOADING_SERVICE_INJECTOR } from './services/http-request.interceptor';
+import { LoadingService } from './services/loading.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,17 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserAnimationsModule,
     ToastrModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpRequestInterceptor,
+      multi: true,
+    },
+    {
+      provide: LOADING_SERVICE_INJECTOR,
+      useClass: LoadingService,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

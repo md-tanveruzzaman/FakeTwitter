@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from './http.service';
 import { Login, Signup, User } from '../interfaces/Account.interfaces';
-import { BehaviorSubject, map } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,35 +16,24 @@ export class AccountService {
   ) { }
 
   register(signupModel: Signup) {
-    return this.httpService.post<User>('signup', signupModel).pipe(
-      map((res: User) => {
-        const user = res;
-        if (user) {
-          localStorage.setItem('user', JSON.stringify(user));
-          this.currentUserSource.next(user);
-        }
-      })
-    )
+    return this.httpService.post('signup', signupModel);
   }
 
-  test() {
-    return this.httpService.get('');
-  }
-
-  login(loginModel: Login) {
+  login(loginModel: Login): Observable<User> {
     return this.httpService.post<User>('login', loginModel).pipe(
       map((res: User) => {
         const user = res;
         if (user) {
-          localStorage.setItem('user', JSON.stringify(user));
+          localStorage.setItem('token', JSON.stringify(user.token));
           this.currentUserSource.next(user);
         }
+        return res;
       })
     )
   }
 
   logout() {
-    localStorage.removeItem('user');
+    localStorage.removeItem('token');
     this.currentUserSource.next(null);
   }
 
