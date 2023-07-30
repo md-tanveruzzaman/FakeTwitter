@@ -1,0 +1,16 @@
+<h3>Login</h3>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
+    <div class="mb-3">
+        <label for="email" class="form-label">Email address</label>
+        <input type="email" formControlName="email" class="form-control" id="email" placeholder="name@example.com">
+    </div>
+    
+    <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" formControlName="password" class="form-control" id="password" placeholder="Password">
+    </div>
+    
+    <div class="mt-6">
+        <button class="btn btn-outline-primary"  type="submit">Login</button>
+    </div>
+</form>
