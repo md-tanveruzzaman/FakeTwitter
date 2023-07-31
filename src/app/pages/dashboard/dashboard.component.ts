@@ -6,9 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
-  user = {
-    name: 'tanver',
-    handle: '@SpectacledCaiman'
-  }
+  user: any= {}
   now: number = Date.now();
+
+  constructor() {
+    const email = localStorage.getItem('email');
+    if (email)
+      this.user.email = JSON.parse(email);
+  }
 }

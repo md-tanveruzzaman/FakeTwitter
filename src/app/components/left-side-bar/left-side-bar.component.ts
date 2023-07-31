@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Follow } from 'src/app/enums/follow.enums';
@@ -8,10 +9,12 @@ import { TweetService } from 'src/app/services/tweet.service';
   standalone: true,
   selector: 'app-left-side-bar',
   templateUrl: './left-side-bar.component.html',
-  styleUrls: ['./left-side-bar.component.scss']
+  styleUrls: ['./left-side-bar.component.scss'],
+  imports: [CommonModule]
 })
 export class LeftSideBarComponent {
   @Input() user: any;
+  @Input() showFollowButton = false;
   now: number = Date.now();
   followButtonLabel = Follow.Follow;
 

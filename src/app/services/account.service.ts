@@ -35,6 +35,7 @@ export class AccountService {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('email');
     this.currentUserSource.next(null);
   }
 

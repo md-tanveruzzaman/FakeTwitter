@@ -1,6 +1,6 @@
 <main class="main" role="main">
     <div class="main-container">
-      <app-left-side-bar [user]="user" ></app-left-side-bar>
+      <app-left-side-bar [user]="user" [showFollowButton]="!isSelf"></app-left-side-bar>
 
 
       <div class="container bootdey">
@@ -45,7 +45,7 @@
   
   <footer class="footer-mobile">
     <ul class="footer-links link-cloud">
-      <li><a href="#">&copy; 2019 Trevor McKeown</a></li>
+      <li><a href="#">&copy; 2023 Fake Tweeter</a></li>
       <li><a href="#">About</a></li>
       <li><a href="#">Help</a></li>
       <li><a href="#">Terms</a></li>

@@ -9,10 +9,7 @@ import { TweetService } from 'src/app/services/tweet.service';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent {
-  user = {
-    name: 'tanver',
-    handle: '@SpectacledCaiman'
-  }
+  user: any = {};
 
   users: TweetUser[] = [];
 
@@ -20,6 +17,9 @@ export class UsersComponent {
     private tweetService: TweetService
   ) {
     this.getUsersList();
+    const email = localStorage.getItem('email');
+    if (email)
+      this.user.email = JSON.parse(email);
   }
 
   private getUsersList() {
