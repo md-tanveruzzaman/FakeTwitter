@@ -1,0 +1,43 @@
+.followers-container {
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: clip;
+  border: 1px solid #eee;
+  padding: 5px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.following-header {
+  margin-bottom: 0;
+    padding: 10px 5px;
+    border: 1px solid #eee;
+    font-size: 16px;
+    background: #e3f2fd;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    text-align: center;
+}
+
+.nearby-user {
+  padding: 5px 10px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+
+.no-followers {
+  border: 1px solid #eee;
+  padding: 20px 15px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.no-tweet {
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 33px;
+  p {
+    font-size: 20px;
+    text-align: center;
+  }
+}

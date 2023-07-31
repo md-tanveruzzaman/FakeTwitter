@@ -1,0 +1,25 @@
+<aside class="tweet-sidebar">
+    <div class="thumbnail-container">
+      <img src="https://picsum.photos/47/47/?random&time={{ imageNumber }}" height="47" width="47" alt="picture of fred" class="thumbnail" />
+    </div>
+
+  </aside>
+  <article class="tweet">
+    <div class="profile-description">
+      <h3 class="profile-full-name">{{ tweet.user.username }}</h3>
+      <span class="time-since-tweet">{{ tweet.published | date}}</span>
+    </div>
+    <p class="tweet-text">
+      {{ tweet.content }}
+    </p>
+    <div class="tweet-controls">
+      <nav class="icon-menu">
+        <ul>
+          <li><a href=""><i class="fas fa-reply"></i></a></li>
+          <li><a href=""><i class="fas fa-retweet"></i></a></li>
+          <li><a href=""><i class="fas fa-star"></i></a></li>
+          <li><a href=""><i class="fas fa-ellipsis-h"></i></a></li>
+        </ul>
+      </nav>
+    </div>
+  </article>

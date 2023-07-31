@@ -1,0 +1,11 @@
+<img class="rounded-circle d-flex align-self-center"
+    src="https://picsum.photos/106/117/?random&now={{now}}" alt="">
+<div class="media-body">
+    <h5>{{tweetUser.username}}</h5>
+    <p title="{{tweetUser.email}}">{{tweetUser.email.length > 15 ? (tweetUser.email.substring(0, 15) + '...') :
+        tweetUser.email}}</p>
+    <p>
+    <!-- <span class="badge badge-outline badge-sm badge-info badge-pill" (click)="toggleFollow()">{{followLabel}}</span> -->
+        <span class="badge badge-outline badge-sm badge-primary badge-pill" (click)="view(tweetUser)">View Profile</span>
+    </p>
+</div><i class="d-flex align-self-center fa fa-dot-circle-o color-info"></i>

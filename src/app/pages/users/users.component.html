@@ -1,0 +1,39 @@
+<main class="main" role="main">
+    <div class="main-container">
+      <app-left-side-bar [user]="user" ></app-left-side-bar>
+
+
+      <div class="container bootdey">
+        <div class="row">
+            <div class="col">
+                <div class="user-widget-2">
+                    <ul class="list-unstyled">
+                        <li class="media" *ngFor="let tweetUser of users">
+                            <app-user [tweetUser]="tweetUser"></app-user>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+  </main>
+  
+  <footer class="footer-mobile">
+    <ul class="footer-links link-cloud">
+      <li><a href="#">&copy; 2019 Trevor McKeown</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Help</a></li>
+      <li><a href="#">Terms</a></li>
+      <li><a href="#">Cookies</a></li>
+      <li><a href="#">Ads Info</a></li>
+      <li><a href="#">Brand</a></li>
+      <li><a href="#">Status</a></li>
+      <li><a href="#">Apps</a></li>
+      <li><a href="#">Jobs</a></li>
+      <li><a href="#">Advertise</a></li>
+      <li><a href="#">Media</a></li>
+      <li><a href="#">Developers</a></li>
+    </ul>
+  </footer>
+  

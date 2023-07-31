@@ -15,6 +15,16 @@ const routes: Routes = [
     canActivate: [authGuard]
   },
   {
+    path: 'users',
+    loadChildren: () => import('./pages/users/users.module').then(m => m.UsersModule),
+    canActivate: [authGuard]
+  },
+  {
+    path: 'user',
+    loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfileModule),
+    canActivate: [authGuard]
+  },
+  {
     path: '**',
     component: HomeComponent,
     pathMatch: 'full'

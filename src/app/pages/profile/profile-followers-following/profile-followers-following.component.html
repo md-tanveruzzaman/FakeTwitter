@@ -1,0 +1,8 @@
+<div class="row">
+    <div class="col">
+      <h5>{{user.username}}</h5>
+      <p class="follow-p">{{user.email.length > 20 ? (user.email.substring(0, 20) + '...') :
+        user.email}}</p>
+      <p class="text-muted">Joined: {{user.join_date | date}}</p>
+    </div>
+  </div>

@@ -1,0 +1,63 @@
+<main class="main" role="main">
+    <div class="main-container">
+      <app-left-side-bar [user]="user" ></app-left-side-bar>
+
+
+      <div class="container bootdey">
+        <div class="row">
+            <div class="col-7">
+              <ng-container *ngIf="tweets.length > 0;else noTweet">
+                <app-tweet class="full-tweet" *ngFor="let tweet of tweets" [tweet]="tweet"></app-tweet>
+              </ng-container>
+              <ng-template #noTweet>
+                <div class="no-tweet">
+                  <p>This user hasn't tweeted yet!</p>
+                </div>
+              </ng-template>
+            </div>
+            <div class="col-5">
+              <p class="following-header">Followers</p>
+              <div class="followers-container" *ngIf="followers.length > 0;else noFollowers">
+                <div class="nearby-user" *ngFor="let user of followers">
+                  <app-profile-followers-following [user]="user"></app-profile-followers-following>
+                </div>
+              </div>
+              <ng-template #noFollowers>
+                <p class="no-followers">No Followers</p>
+              </ng-template>
+
+              <p class="following-header">Followings</p>
+              <div class="followers-container" *ngIf="followings.length > 0;else noFolowings">
+                <div class="nearby-user" *ngFor="let user of followings" (click)="onClickUser(user)">
+                  <app-profile-followers-following [user]="user"></app-profile-followers-following>
+                </div>
+              </div>
+              <ng-template #noFolowings>
+                <p class="no-followers">No Followings</p>
+              </ng-template>
+
+              
+          </div>
+        </div>
+        </div>
+    </div>
+  </main>
+  
+  <footer class="footer-mobile">
+    <ul class="footer-links link-cloud">
+      <li><a href="#">&copy; 2019 Trevor McKeown</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Help</a></li>
+      <li><a href="#">Terms</a></li>
+      <li><a href="#">Cookies</a></li>
+      <li><a href="#">Ads Info</a></li>
+      <li><a href="#">Brand</a></li>
+      <li><a href="#">Status</a></li>
+      <li><a href="#">Apps</a></li>
+      <li><a href="#">Jobs</a></li>
+      <li><a href="#">Advertise</a></li>
+      <li><a href="#">Media</a></li>
+      <li><a href="#">Developers</a></li>
+    </ul>
+  </footer>
+  

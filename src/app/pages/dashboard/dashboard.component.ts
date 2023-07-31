@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
-
+  user = {
+    name: 'tanver',
+    handle: '@SpectacledCaiman'
+  }
+  now: number = Date.now();
 }

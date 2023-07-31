@@ -42,4 +42,13 @@ export class NavComponent implements OnDestroy{
     this.router.navigate(['/'])
   }
 
+  viewProfile() {
+    const userEmail = localStorage.getItem('email');
+    if (userEmail) {
+      this.router.navigate(['user', 'me'], {queryParams: {
+        email: JSON.parse(userEmail)
+      }});
+    }
+  }
+
 }

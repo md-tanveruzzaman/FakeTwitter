@@ -25,6 +25,7 @@ export class AccountService {
         const user = res;
         if (user) {
           localStorage.setItem('token', JSON.stringify(user.token));
+          localStorage.setItem('email', JSON.stringify(loginModel.email));
           this.currentUserSource.next(user);
         }
         return res;

@@ -38,7 +38,7 @@ export class AppComponent implements OnInit, OnDestroy{
       token: JSON.parse(tokenStr)
     };
     this.accountService.setCurrentUser(user);
-    this.router.navigate(['/dashboard']);
+    // this.router.navigate(['/dashboard']);
   }
 
   listenToLoading(): void {
