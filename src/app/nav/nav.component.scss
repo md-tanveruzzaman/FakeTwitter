@@ -16,3 +16,9 @@
     border: 1px solid #0d6efd;
     border-radius: 7px;
 }
+
+@media only screen and (max-width: 520px)  {
+    :host ::ng-deep.ng-select-typeahead {
+        width: 200px !important;
+    }
+}

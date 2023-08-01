@@ -5,7 +5,7 @@
 
       <div class="container bootdey">
         <div class="row">
-            <div class="col-7">
+            <div class="col-md-7 col-sm-12">
               <ng-container *ngIf="tweets.length > 0;else noTweet">
                 <app-tweet class="full-tweet" *ngFor="let tweet of tweets" [tweet]="tweet"></app-tweet>
               </ng-container>
@@ -15,7 +15,7 @@
                 </div>
               </ng-template>
             </div>
-            <div class="col-5">
+            <div class="col-md-5 col-sm-12">
               <p class="following-header">Followers</p>
               <div class="followers-container" *ngIf="followers.length > 0;else noFollowers">
                 <div class="nearby-user" *ngFor="let user of followers" (click)="onClickUser(user)">

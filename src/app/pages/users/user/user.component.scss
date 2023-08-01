@@ -188,3 +188,8 @@
     background-color: transparent;
     color: #d32f2f;
 }
+@media only screen and (max-width: 520px)  {
+    .user-widget-2 .media {
+        padding: 0 20px !important;
+    }
+}

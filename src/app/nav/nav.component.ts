@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { AccountService } from '../services/account.service';
-import { Subject, Subscription, debounceTime, delay, distinctUntilChanged, filter } from 'rxjs';
+import { Subject, Subscription, debounceTime, delay, distinctUntilChanged, filter, tap } from 'rxjs';
 import { User } from '../interfaces/Account.interfaces';
 import { Router } from '@angular/router';
 import { TweetService } from '../services/tweet.service';
@@ -14,6 +14,7 @@ import { TweetUser } from '../interfaces/Tweet.interfaces';
 export class NavComponent implements OnDestroy, OnInit{
 
   @Input() title!: string;
+  isLoading = false;
   initialValue: string = '';
   debounceTime = 300;
 
@@ -23,7 +24,8 @@ export class NavComponent implements OnDestroy, OnInit{
     debounceTime(this.debounceTime),
     delay(500),
     filter((query: string) =>  query?.length > 2),
-    distinctUntilChanged()
+    distinctUntilChanged(),
+    tap(() => this.isLoading = true),
   );
 
   isAuthenticated = false;
@@ -85,10 +87,11 @@ export class NavComponent implements OnDestroy, OnInit{
       .subscribe({
         next: response => {
           this.results = response.search_results;
-          console.log(this.results)
+          this.isLoading = false;
         },
         error: errorResponse => {
           console.log(errorResponse);
+          this.isLoading = false;
         }
       });
     this.subscriptions.push(searchSubs);
