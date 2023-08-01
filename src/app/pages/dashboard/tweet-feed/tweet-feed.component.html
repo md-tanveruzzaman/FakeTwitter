@@ -26,4 +26,15 @@
     <ng-template #noTweet>
       <p class="no-tweet">Your Feed is empty! <br>Please follow someone to get their tweets on your feed.</p>
     </ng-template>
+
+    <nav aria-label="..." class="pagination-nav">
+      <ul class="pagination">
+        <li class="page-item" [ngClass]="paginationParams.page <= 1 ? 'disabled' : ''">
+          <a class="page-link" href="#" (click)="prevPagination();$event.preventDefault()">Previous</a>
+        </li>
+        <li class="page-item" [ngClass]="count < paginationParams.size ? 'disabled' : ''">
+          <a class="page-link" href="#" (click)="nextPagination();$event.preventDefault()">Next</a>
+        </li>
+      </ul>
+    </nav>
   </div>

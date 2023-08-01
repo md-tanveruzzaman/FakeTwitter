@@ -36,6 +36,11 @@ export class TweetFeedComponent {
   imageNumber = Date.now() + Math.random();
   hide = true;
   tweets: Tweet[] = [];
+  paginationParams: IPaginationParams = {
+    size: 10,
+    page: 1
+  }
+  count = 0;
   @ViewChild('newTweetText') newTweetText: ElementRef = {} as ElementRef;
 
   constructor(
@@ -46,19 +51,29 @@ export class TweetFeedComponent {
   }
 
   private getTimeline() {
-    const params: IPaginationParams = {
-      size: 30,
-      page: 1
-    }
-    const paginationParams = new PaginationParams(params);
+    const paginationParams = new PaginationParams(this.paginationParams);
 
     this.tweetService.getTimeline(paginationParams)
       .subscribe({
         next: (res) => {
+          this.count = res.count;
           this.tweets = res.timeline;
         }
       })
+  }
 
+  nextPagination() {
+    if (this.count === this.paginationParams.size) {
+      this.paginationParams.page ++;
+      this.getTimeline();
+    }
+  }
+
+  prevPagination() {
+    if (this.paginationParams.page > 1) {
+      this.paginationParams.page --;
+      this.getTimeline();
+    }
   }
 
   toggle(): void {
