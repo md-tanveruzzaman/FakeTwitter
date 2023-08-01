@@ -11,7 +11,8 @@
       <div class="profile-about">
         <div class="name-container">
           <!-- <h2 class="name">{{ user.username }}</h2> -->
-          <div class="handle" style="margin: 10px 0;">{{ user.email }}</div>
+          <div class="handle" style="margin: 10px 0;">{{user.email.length > 30 ? (user.email.substring(0, 30) + '...') :
+            user.email}}</div>
           <button *ngIf="showFollowButton" class="btn btn-primary mb-2" (click)="toggleFollow()">{{followButtonLabel}}</button>
         </div>
         <p class="about">
