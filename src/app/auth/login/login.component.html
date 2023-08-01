@@ -1,5 +1,6 @@
-<h3>Login</h3>
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
+
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)" class="col-md-6 offset-md-3 cus-form">
+    <h3>Login</h3>
     <div class="mb-3">
         <label for="email" class="form-label">Email address</label>
         <input type="email" formControlName="email" class="form-control" id="email" placeholder="name@example.com">
