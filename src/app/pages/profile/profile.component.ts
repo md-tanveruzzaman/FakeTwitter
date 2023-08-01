@@ -37,7 +37,12 @@ export class ProfileComponent implements OnInit{
           this.userId = param['id'];
           this.user.id = this.userId;
         } else {
-          this.isSelf = false;
+          const email = localStorage.getItem('email');
+          if (email && this.user.email === JSON.parse(email)) {
+            this.isSelf = true;
+          } else {
+            this.isSelf = false;
+          }
           this.userId = +param['id'];
           this.user.id = this.userId;
         }

@@ -15,8 +15,26 @@
                 </li>
             </ul>
             <form class="d-flex" role="search">
-                <input *ngIf="isAuthenticated" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <img *ngIf="isAuthenticated" title="View your profile" (click)="viewProfile()" src="assets/img/avatar.png" class="avatar-self" alt="">
+                <ng-select 
+                    *ngIf="isAuthenticated"
+                    [items]="results"
+                    bindLabel="username"
+                    [addTag]="false"
+                    [multiple]="false"
+                    [hideSelected]="true"
+                    [minTermLength]="3"
+                    [loading]="false"
+                    [virtualScroll]="true"
+                    placeholder="Search"
+                    typeToSearchText="Please enter 3 or more characters"
+                    [typeahead]="inputValue"
+                    [(ngModel)]="selectedUser"
+                    name="user"
+                    (input)="onInput($event)"
+                    (change)="onChangeModel()">
+                </ng-select>
+
+                <img *ngIf="isAuthenticated" title="View your profile" (click)="viewProfile()" src="https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper.png" class="avatar-self" alt="">
                 <button *ngIf="isAuthenticated" class="btn btn-outline-primary me-3" (click)="onLogout()" type="button">Logout</button>
                 <button *ngIf="!isAuthenticated" class="btn btn-outline-primary me-3" [routerLink]="'/auth/registration'" type="button">Registration</button>
                 <button *ngIf="!isAuthenticated" class="btn btn-outline-primary" [routerLink]="'/auth/login'" type="button">Login</button>

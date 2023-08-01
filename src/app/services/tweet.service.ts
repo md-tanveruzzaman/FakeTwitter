@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from './http.service';
 import { TweetPost, TweetPostResponse, TweetUser } from '../interfaces/Tweet.interfaces';
-import { FollowersPaginationResponse, FollowingsPaginationResponse, PaginationParams, PaginationResponse, TweetByUserPaginationResponse, UsersPaginationResponse, timelinePaginationResponse } from '../interfaces/Pagination';
+import { FollowersPaginationResponse, FollowingsPaginationResponse, PaginationParams, PaginationResponse, SearchResultResponse, TweetByUserPaginationResponse, UsersPaginationResponse, timelinePaginationResponse } from '../interfaces/Pagination';
 import { FollowUserBody, FollowUserResp } from '../interfaces/Follow.interface';
 
 @Injectable({
@@ -46,5 +46,12 @@ export class TweetService {
   getFollowingsListByUser(userId: number, paginationParams: PaginationParams, isSelf: boolean) {
     const endpoint = isSelf ? 'following' : `users/${userId}/following`;
     return this.httpService.get<FollowingsPaginationResponse>(endpoint, paginationParams);
+  }
+
+  search(searchString: string) {
+    const postBody = {
+      token: searchString
+    }
+    return this.httpService.post<SearchResultResponse>('search', postBody);
   }
 }

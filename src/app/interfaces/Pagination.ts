@@ -42,3 +42,7 @@ export interface FollowingsPaginationResponse extends PaginationResponse{
     followings: TweetUser[];
 }
 
+export interface SearchResultResponse extends PaginationResponse{
+    search_results: TweetUser[];
+}
+

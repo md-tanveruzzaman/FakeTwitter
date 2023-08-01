@@ -18,8 +18,8 @@
             <div class="col-5">
               <p class="following-header">Followers</p>
               <div class="followers-container" *ngIf="followers.length > 0;else noFollowers">
-                <div class="nearby-user" *ngFor="let user of followers">
-                  <app-profile-followers-following [user]="user"></app-profile-followers-following>
+                <div class="nearby-user" *ngFor="let user of followers" (click)="onClickUser(user)">
+                  <app-profile-followers-following [user]="user" ></app-profile-followers-following>
                 </div>
               </div>
               <ng-template #noFollowers>

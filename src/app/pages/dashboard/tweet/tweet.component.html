@@ -6,7 +6,7 @@
   </aside>
   <article class="tweet">
     <div class="profile-description">
-      <h3 class="profile-full-name">{{ tweet.user.username }}</h3>
+      <h3 class="profile-full-name" (click)="onClickView(tweet.user)">{{ tweet.user.username }}</h3>
       <span class="time-since-tweet">{{ tweet.published | date}}</span>
     </div>
     <p class="tweet-text">

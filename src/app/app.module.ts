@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpRequestInterceptor, LOADING_SERVICE_INJECTOR } from './services/http-request.interceptor';
 import { LoadingService } from './services/loading.service';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { LoadingService } from './services/loading.service';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    NgSelectModule
   ],
   providers: [
     {

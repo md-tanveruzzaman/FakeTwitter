@@ -1,23 +1,47 @@
-import { Component, Input, OnDestroy } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { AccountService } from '../services/account.service';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription, debounceTime, delay, distinctUntilChanged, filter } from 'rxjs';
 import { User } from '../interfaces/Account.interfaces';
 import { Router } from '@angular/router';
+import { TweetService } from '../services/tweet.service';
+import { TweetUser } from '../interfaces/Tweet.interfaces';
 
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss']
 })
-export class NavComponent implements OnDestroy{
+export class NavComponent implements OnDestroy, OnInit{
 
   @Input() title!: string;
+  initialValue: string = '';
+  debounceTime = 300;
+
+  inputValue = new Subject<string>();
+  selectedUser: TweetUser = {} as TweetUser;
+  trigger = this.inputValue.pipe(
+    debounceTime(this.debounceTime),
+    delay(500),
+    filter((query: string) =>  query?.length > 2),
+    distinctUntilChanged()
+  );
 
   isAuthenticated = false;
   subscriptions: Subscription[] = [];
+  results: TweetUser[] = [];
 
-  constructor(private accountService: AccountService, private router: Router) {
+  constructor(
+    private accountService: AccountService,
+    private router: Router,
+    private tweetService: TweetService) {
     this.listenAuthStatus();
+  }
+
+  ngOnInit(): void {
+    const subscription = this.trigger.subscribe(currentValue => {
+        this.onTextChange(currentValue);
+    });
+    this.subscriptions.push(subscription);
   }
 
   ngOnDestroy(): void {
@@ -47,6 +71,33 @@ export class NavComponent implements OnDestroy{
     if (userEmail) {
       this.router.navigate(['user', 'me'], {queryParams: {
         email: JSON.parse(userEmail)
+      }});
+    }
+  }
+
+  onInput(e: any) {
+    this.inputValue.next(e.target.value);
+  }
+
+  onTextChange(changedText: string) {
+    const searchSubs = this.tweetService
+      .search(changedText)
+      .subscribe({
+        next: response => {
+          this.results = response.search_results;
+          console.log(this.results)
+        },
+        error: errorResponse => {
+          console.log(errorResponse);
+        }
+      });
+    this.subscriptions.push(searchSubs);
+  }
+
+  onChangeModel() {
+    if (this.selectedUser) {
+      this.router.navigate(['user', this.selectedUser.id], {queryParams: {
+        email: this.selectedUser.email
       }});
     }
   }

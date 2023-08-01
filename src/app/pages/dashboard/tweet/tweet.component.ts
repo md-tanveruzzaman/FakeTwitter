@@ -1,8 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { Tweet } from 'src/app/interfaces/Tweet.interfaces';
-import { TweetService } from 'src/app/services/tweet.service';
+import { Router, RouterModule } from '@angular/router';
+import { Tweet, TweetUser } from 'src/app/interfaces/Tweet.interfaces';
 
 @Component({
   standalone: true,
@@ -17,9 +16,15 @@ export class TweetComponent {
   @Input() tweet: Tweet = {} as Tweet;
 
   constructor(
-    private tweetService: TweetService
+    private router: Router
   ) { }
 
+
+  onClickView(user: TweetUser) {
+    this.router.navigate(['user', user.id], {queryParams: {
+      email: user.email
+    }});
+  }
   
 
 }
