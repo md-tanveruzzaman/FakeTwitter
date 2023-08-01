@@ -20,5 +20,10 @@
     </form>
   </div>
   <div class="feed">
-    <app-tweet class="full-tweet" *ngFor="let tweet of tweets; let i = index" [tweet]="tweet" [imageNumber]="imageNumber + i"></app-tweet>
+    <ng-container *ngIf="tweets.length > 0;else noTweet">
+      <app-tweet class="full-tweet" *ngFor="let tweet of tweets; let i = index" [tweet]="tweet" [imageNumber]="imageNumber + i"></app-tweet>
+    </ng-container>
+    <ng-template #noTweet>
+      <p class="no-tweet">Your Feed is empty! <br>Please follow someone to get their tweets on your feed.</p>
+    </ng-template>
   </div>
